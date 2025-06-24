@@ -13,3 +13,10 @@ export const submitForm = (selector) => {
 export const assertTextByXpath = (selector, expectedText) => {
   cy.xpath(selector).should('contain.text', expectedText);
 }
+
+export const clickByXpath = (selector) => {
+  cy.xpath(selector).click();
+}
+export const containsTextRegex = (regex) => {
+  cy.contains(regex).should('be.visible');
+}

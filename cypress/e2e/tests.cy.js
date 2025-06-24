@@ -8,4 +8,8 @@ describe("Testing Fundamentals Page", () => {
     it("should have the correct main heading", () => {
         fundamentalsPage.assertMainHeader()
     });
+    it("should check the accordion logic", () => {
+        fundamentalsPage.checkAccordianLogic();
+    }
+    );
 });
