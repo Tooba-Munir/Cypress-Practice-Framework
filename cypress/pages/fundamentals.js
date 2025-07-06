@@ -8,7 +8,7 @@ class fundamentals {
     }
 
     visit() {
-        cy.visit('/fundamentals');
+        actions.visitPage('/fundamentals');
     }
     assertMainHeader() {
         actions.assertTextByXpath(this.mainHeaderSelector, 'Testing Fundamentals')
@@ -16,18 +16,6 @@ class fundamentals {
     checkAccordianLogic(){
         actions.clickByXpath(this.firstParagraphSelector);
         actions.containsTextRegex(/Your tests will exist in a/i);
-    }
-
-    getTitle() {
-        //return cy.get(this.titleSelector);
-    }
-
-    getHeader() {
-        //return cy.get(this.headerSelector);
-    }
-
-    clickButton() {
-        //cy.get(this.buttonSelector).click();
     }
 }
 
