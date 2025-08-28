@@ -55,7 +55,7 @@ README.md                  # Project documentation
 
 // Example using a page object from the new structure
 import LoginPage from '../pages/LoginPage';
-
+```
 describe('Login Page', () => {
   const loginPage = new LoginPage();
 
@@ -70,3 +70,4 @@ describe('Login Page', () => {
     loginPage.assertLoginSuccess();
   });
 });
+```
