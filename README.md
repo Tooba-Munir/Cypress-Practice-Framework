@@ -1,67 +1,72 @@
 # Cypress Practice Framework
 
-This project is a clean, scalable Cypress Page Object Model (POM) based framework.
+A modern, maintainable Cypress framework leveraging the Page Object Model (POM) and modular utilities.
 
-## Project Structure
+## Overview
+
+This project provides a robust structure for end-to-end testing with Cypress, focusing on scalability and code reuse.
+
+## Directory Structure
 
 ```
 cypress/
   e2e/
-    tests.cy.js            # Example test file
+    *.cy.js                # Test specifications
   pages/
-    fundamentals.js        # Page Object for Fundamentals page
+    *.js                   # Page Object classes
   support/
-    commands.js            # Custom Cypress commands
-    e2e.js                 # Global support file (loads cypress-xpath)
+    commands.js            # Custom commands
+    e2e.js                 # Global setup (e.g., plugins, XPath)
     utils/
-      urls.js              # Centralized URLs (e.g., BASE_URL)
-      genericFunctions.js  # Generic utility functions for tests
+      *.js                 # Utilities (URLs, helpers, etc.)
 cypress.config.js          # Cypress configuration
 README.md                  # Project documentation
 ```
 
 ## Key Features
-- **Page Object Model (POM):** All page-specific logic is encapsulated in the `pages/` folder.
-- **Reusable Actions:** Common actions and assertions are in `actions/sampleActions.js`.
-- **Generic Functions:** Utility functions for use across tests in `support/utils/genericFunctions.js`.
-- **Centralized URLs:** All base URLs and endpoints in `support/utils/urls.js`.
-- **Global XPath Support:** `cypress-xpath` is enabled in `support/e2e.js` for XPath selectors.
 
-## Setup
+- **Page Object Model:** Organize selectors and actions per page for maintainability.
+- **Custom Commands:** Extend Cypress with reusable commands.
+- **Utility Modules:** Centralize helpers and configuration (e.g., URLs).
+- **Global Plugins:** Support for plugins like `cypress-xpath` out of the box.
+
+## Getting Started
+
 1. Install dependencies:
    ```sh
    npm install
    ```
-2. Install XPath support:
+2. (Optional) Add plugins as needed, e.g.:
    ```sh
    npm install -D cypress-xpath
    ```
-3. Run Cypress:
+3. Run tests:
    ```sh
    npx cypress open
    ```
 
 ## Writing Tests
-- Place your test files in `cypress/e2e/`.
-- Use page objects from `cypress/pages/` for clean, maintainable tests.
-- Use utility functions and actions for DRY code.
 
-## Example Usage
-```javascript
-import fundamentals from '../pages/fundamentals';
+- Place test files in `cypress/e2e/`.
+- Use page objects from `cypress/pages/` for clear, maintainable tests.
+- Import and use utility functions as needed.
 
-describe('Testing Fundamentals Page', () => {
-  const fundamentalsPage = new fundamentals();
+## Example Test
+
+// Example using a page object from the new structure
+import LoginPage from '../pages/LoginPage';
+
+describe('Login Page', () => {
+  const loginPage = new LoginPage();
+
   beforeEach(() => {
-    fundamentalsPage.visit();
+    loginPage.visit();
   });
 
-  it('should have the correct main heading', () => {
-    fundamentalsPage.assertMainHeader();
+  it('logs in with valid credentials', () => {
+    loginPage.enterUsername('user');
+    loginPage.enterPassword('password');
+    loginPage.submit();
+    loginPage.assertLoginSuccess();
   });
 });
-```
-
----
-
-For more details, see the Cypress documentation: https://docs.cypress.io/
